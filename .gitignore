@@ -1,0 +1,5 @@
+.pytest_cache/
+notebooks/
+src/__pycache__/
+src/tests/__pycache__/
+src/tests/.pytest_cache/
