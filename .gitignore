@@ -1,5 +1,5 @@
 .pytest_cache/
 notebooks/
-**/__pycache__
+**/__pycache__/
 src/tests/.pytest_cache/
 .vscode/
