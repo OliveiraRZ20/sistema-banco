@@ -3,3 +3,4 @@ notebooks/
 src/__pycache__/
 src/tests/__pycache__/
 src/tests/.pytest_cache/
+src/utils/__pycache__/
