@@ -35,9 +35,24 @@ def test_adicionar_conta_invalida(banco):
 def test_transferir_com_saldo(banco):
     banco.adicionar_conta(nome="João", cpf="12345678900", saldo=1000.0)
     banco.adicionar_conta(nome="Maria", cpf="09876543210", saldo=500.0)
-    assert banco.transferir(cpf_origem="12345678900", cpf_destino="09876543210", valor=300.0)
+    assert banco.transferir(cpf_origem="12345678900", cpf_destino="09876543210", valor=300.0) is True
     assert banco.contas["12345678900"].saldo == 700.0
     assert banco.contas["09876543210"].saldo == 800.0
+
+def test_transferir_sem_saldo(banco):
+    banco.adicionar_conta(nome="João", cpf="12345678900", saldo=1000.0)
+    banco.adicionar_conta(nome="Maria", cpf="09876543210", saldo=500.0)
+    assert banco.transferir(cpf_origem="12345678900", cpf_destino="09876543210", valor=2000.0) is False
+    assert banco.contas["12345678900"].saldo == 1000.0
+    assert banco.contas["09876543210"].saldo == 500.0
+
+def test_transferir_cpf_invalido(banco):
+    banco.adicionar_conta(nome="João", cpf="12345678900", saldo=1000.0)
+    banco.adicionar_conta(nome="Maria", cpf="09876543210", saldo=500.0)
+    assert banco.transferir(cpf_origem="12345678900", cpf_destino="invalid_cpf", valor=200.0) is False
+    assert banco.transferir(cpf_origem="invalid_cpf", cpf_destino="09876543210", valor=200.0) is False
+    assert banco.contas["12345678900"].saldo == 1000.0
+    assert banco.contas["09876543210"].saldo == 500.0
 
 if __name__ == "__main__":
     pytest.main()
