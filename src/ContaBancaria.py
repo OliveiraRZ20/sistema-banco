@@ -20,7 +20,7 @@ class ContaBancaria():
     def sacar(self, valor: float) -> bool:
         if not valor:
             alertar("Valor inválido!")
-        elif valor >= self.saldo:
+        elif valor > self.saldo:
             alertar("Saldo insuficiente!")
         else:
             self.saldo -= valor
